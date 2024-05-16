@@ -31,8 +31,14 @@ jobs:
         export keyPassword=${{ secrets.KEY_PASSWORD }}
         export storeFile=${{ secrets.STORE_FILE }}
         ./gradlew assembleFullRelease
+        ./gradlew assembleFullRelease assembleaapsclientRelease
     - name: Archive production artifacts
       uses: actions/upload-artifact@v3
       with:
         name: aaps
         path: app/build/outputs/apk/full/release
+    - name: Archive production artifacts aapsclient
+      uses: actions/upload-artifact@v3
+      with:
+        name: aapsclientRelease
+        path: app/build/outputs/apk/aapsClient/release
